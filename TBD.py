@@ -21,8 +21,7 @@ filename = os.path.join(current_path, 'rf_tbd_other_Dec12_23.joblib')
 if os.path.isfile(filename):
     try:
         with open(filename, 'rb') as file:
-            #model = pickle.load(file)
-            model = joblib.load(filename)
+            model = joblib.load(file)
         # Your code to use the loaded model
     except Exception as e:
         print(f"Error loading the pickle file: {e}")
