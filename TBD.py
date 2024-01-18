@@ -17,7 +17,8 @@ with open('style.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 filename = 'rf_tbd_other_Dec12_23.sav'
-model = pickle.load(open(filename, 'rb'))
+with open(filename, 'rb') as file:
+    model = pickle.load(file)
 
 patient_df = pd.read_csv("x_mode.csv", sep="\t")
 
