@@ -1,0 +1,4 @@
+.streamlit/*
+x.csv
+y.csv
+settings.py

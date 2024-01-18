@@ -1,0 +1,10 @@
+/* div[data-baseweb="select"] > div {
+    background-color: green;
+} */
+.stAlert > div {
+    padding: 0px 4px;
+}
+
+.stButton {
+    text-align: center;
+}
