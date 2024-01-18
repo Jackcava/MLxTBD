@@ -17,8 +17,15 @@ with open('style.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 filename = 'rf_tbd_other_Dec12_23.sav'
-with open(filename, 'rb') as file:
-    model = pickle.load(file)
+if os.path.isfile(filename):
+    try:
+        with open(filename, 'rb') as file:
+            model = pickle.load(file)
+        # Your code to use the loaded model
+    except Exception as e:
+        print(f"Error loading the pickle file: {e}")
+else:
+    print(f"The file '{filename}' does not exist.")
 
 patient_df = pd.read_csv("x_mode.csv", sep="\t")
 
