@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 
 # streamlit run TBD.py
 
@@ -17,11 +17,12 @@ with open(os.path.join(current_path, 'style.css')) as f:
 
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
-filename = os.path.join(current_path, 'rf_tbd_other_Dec12_23.sav')
+filename = os.path.join(current_path, 'rf_tbd_other_Dec12_23.joblib')
 if os.path.isfile(filename):
     try:
         with open(filename, 'rb') as file:
-            model = pickle.load(file)
+            #model = pickle.load(file)
+            model = joblib.load(filename)
         # Your code to use the loaded model
     except Exception as e:
         print(f"Error loading the pickle file: {e}")

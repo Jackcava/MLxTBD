@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import KFold, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
-import pickle
+import joblib
 
 x = pd.read_csv("x.csv", sep="\t")
 y = pd.read_csv("y.csv", sep="\t")
@@ -30,10 +30,11 @@ param_grid = {
 # Create a based model
 rf = RandomForestClassifier()
 # Instantiate the grid search model
-model_grid = GridSearchCV(estimator = rf, param_grid = param_grid,
-                          cv = kfold, n_jobs = -1)
-model_grid.fit(x,y)
+model_grid = GridSearchCV(estimator=rf, param_grid=param_grid,
+                          cv=kfold, n_jobs=-1)
+model_grid.fit(x, y)
 
 model = model_grid.best_estimator_
 
-pickle.dump(model, open("rf_tbd_other_Dec12_23.sav", 'wb'))
+# Save the model using joblib
+joblib.dump(model, "rf_tbd_other_Dec12_23.joblib")
