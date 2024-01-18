@@ -4,19 +4,20 @@ import pandas as pd
 import numpy as np
 import pickle
 
-
 # streamlit run TBD.py
+
+current_path = os.getcwd()
 
 st.set_page_config(page_title="Telomeropathy Diagnosis", page_icon=":medical_symbol:",layout="wide")
 st.markdown("<h1 style='text-align: center;'>This web app is for supporting the clinician in the telomeropathy diagnosis.</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>Please fill the form below and click the predict button to see how likely variant is pathogenic.</h3>", unsafe_allow_html=True)
 
-with open('style.css') as f:
+with open(os.path.join(current_path, 'style.css')) as f:
     css = f.read()
 
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
-filename = 'rf_tbd_other_Dec12_23.sav'
+filename = os.path.join(current_path, 'rf_tbd_other_Dec12_23.sav')
 if os.path.isfile(filename):
     try:
         with open(filename, 'rb') as file:
@@ -27,7 +28,7 @@ if os.path.isfile(filename):
 else:
     print(f"The file '{filename}' does not exist.")
 
-patient_df = pd.read_csv("x_mode.csv", sep="\t")
+patient_df = pd.read_csv(os.path.join(current_path, "x_mode.csv"), sep="\t")
 
 st.divider()
 
@@ -107,18 +108,6 @@ with col1:
   elif mucoalt == "No":
     patient_df["Mucocutaneaous alterations"] = 0
 
-  # #Neuro-malformations
-  # neuro = st.selectbox(
-  #     'Does the patient have any neuro-malformations?',
-  #     ('','Yes', 'No', 'Not known'),key="neuro")
-  # if neuro != "":
-  #   st.success('✓')
-  #   count += 1
-  # if neuro == "Yes":
-  #   patient_df["Neuro-malformations"] = 1
-  # elif neuro == "No":
-  #   patient_df["Neuro-malformations"] = 0
-
   #Other malformations
   malf = st.selectbox(
       'Does the patient have any other malformations?',
@@ -192,18 +181,6 @@ with col2:
   elif immunodef == "No":
     patient_df["Any immunodeficiency"] = 0
 
-  # #Pulmonary disease
-  # puldef = st.selectbox(
-  #     'Does the patient have any pulmonary diseases?',
-  #     ('','Yes', 'No', 'Not known'),key="puldef")
-  # if puldef != "":
-  #   st.success('✓')
-  #   count += 1
-  # if puldef == "Yes":
-  #   patient_df["Pulmonary disease"] = 1
-  # elif puldef == "No":
-  #   patient_df["Pulmonary disease"] = 0
-
   #Hepatopathy
   hepa = st.selectbox(
       'Does the patient have hepatopathy?',
@@ -215,18 +192,6 @@ with col2:
     patient_df["Hepathopathy"] = 1
   elif hepa == "No":
     patient_df["Hepathopathy"] = 0
-
-  # #Ophthalmopathy
-  # opht = st.selectbox(
-  #     'Does the patient have ophthalmopathy?',
-  #     ('','Yes', 'No', 'Not known'),key="opht")
-  # if opht != "":
-  #   st.success('✓')
-  #   count += 1
-  # if opht == "Yes":
-  #   patient_df["Ophtalmopathy"] = 1
-  # elif opht == "No":
-  #   patient_df["Ophtalmopathy"] = 0
 
 st.divider()
 #st.write(count)
