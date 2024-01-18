@@ -206,7 +206,7 @@ with col1:
   if st.button('Predict'):
     #patient_df = pd.DataFrame(patient, index=[0])
     pred = model.predict_proba(patient_df)
-    st.write(pred)
+    #st.write(pred)
     if count > 12:
       if pred[0][0] > 0.50:
         st.write("The patient has **:red[TBD]** with a probability of:", round(pred[0][0]*100,2), "%")
