@@ -9,8 +9,8 @@ import joblib
 current_path = os.getcwd()
 
 st.set_page_config(page_title="Telomeropathy Diagnosis", page_icon=":medical_symbol:",layout="wide")
-st.markdown("<h1 style='text-align: center;'>This web app is for supporting the clinician in the telomeropathy diagnosis.</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>Please fill the form below and click the predict button to see how likely variant is pathogenic.</h3>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>MLxTBD: an AI-based tool for supporting the clinician in the telomeropathy diagnosis.</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Please fill the form below and click the predict button to see how likely the patient has telomeropathy.</h3>", unsafe_allow_html=True)
 
 with open(os.path.join(current_path, 'style.css')) as f:
     css = f.read()
