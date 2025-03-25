@@ -36,16 +36,16 @@ count = 0
 _, col1, col2, _ = st.columns([1, 1, 1, 1])
 
 with col1:
-  #GENDER
-  gender = st.radio(
-      "Patient gender:",
-      ("Not selected", "Not known", "Male", "Female"),key="gender")
-  if gender != "Not selected":
+  #sex
+  sex = st.radio(
+      "Patient's sex:",
+      ("Not selected", "Not known", "Male", "Female"),key="sex")
+  if sex != "Not selected":
     count += 1
     st.success('✓')
-  if gender == "Male":
+  if sex == "Male":
       patient_df["SEX"] = 1
-  elif gender == "Female":
+  elif sex == "Female":
       patient_df["SEX"] = 0
 
   #L<1°p
@@ -215,14 +215,15 @@ with col1:
     else:
       st.error("All the fields must be filled.")
 
-l_variables = ["gender","l1p","fam","all_cyt","autoimm","mucoalt","malf","age","l10p","bmf","per_cyt","immunodef","hepa"]
+l_variables = ["sex","l1p","fam","all_cyt","autoimm","mucoalt","malf","age","l10p","bmf","per_cyt","immunodef","hepa"]
 
 with col2:
   if st.button('Clear all'):
     for el in l_variables:
       del st.session_state[el]
-      if el == "gender" or el == "age":
+      if el == "sex" or el == "age":
         st.session_state[el] = "Not selected"
       else:
         st.session_state[el] = ""
-    st.experimental_rerun()
+    #st.experimental_rerun()
+    st.rerun()
